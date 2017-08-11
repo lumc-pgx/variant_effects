@@ -18,12 +18,6 @@ include: "rules/link_sources.snake"
 include: "rules/list_hgvs.snake"
 include: "rules/run_vep.snake"
 include: "rules/filter_vep.snake"
+include: "rules/combine_vep.snake"
 
 
-rule combine:
-    input:
-        dynamic("variant_effect/filtered_vep/{barcode}/{allele}.txt")
-    output:
-        "variant_effect/combined/{barcode}.txt"
-    shell:
-        "cat {input} > {output}"
