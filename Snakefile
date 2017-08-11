@@ -1,5 +1,3 @@
-import yaml
-
 include: "helper.snake"
 
 PARAMS = VEPHelper(config, "Variant Effects")
