@@ -6,11 +6,6 @@ PARAMS = VEPHelper(config, "Variant Effects")
 
 onsuccess: PARAMS.onsuccess()
 onerror: PARAMS.onerror()
-
-
-with open(config["GENE"], "r") as infile:
-    gene = yaml.safe_load(infile)
-
     
 # main workflow
 localrules:

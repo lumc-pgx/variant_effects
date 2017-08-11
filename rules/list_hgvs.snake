@@ -5,6 +5,6 @@ rule list_hgvs:
         dynamic("variant_effect/hgvs/{barcode}/{allele}.txt")
     params:
         prefix = "variant_effect/hgvs/{barcode}",
-        chr_id = gene["chromosome"]["accession"]
+        chr_id = PARAMS.locus.chromosome.accession
     script:
         "../scripts/make_hgvs_list.py"

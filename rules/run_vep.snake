@@ -12,7 +12,7 @@ rule run_vep:
     output:
         "variant_effect/vep/{barcode}/{allele}.txt"
     params:
-        assembly = assembly_version(gene["reference"])
+        assembly = assembly_version(PARAMS.locus.reference)
     conda:
         "../envs/vep.yaml"
     shell:

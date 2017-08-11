@@ -4,7 +4,7 @@ rule filter_vep:
     output:
         "variant_effect/filtered_vep/{barcode}/{allele}.txt"
     params:
-        transcript_id = gene["transcript"]
+        transcript_id = PARAMS.locus.transcript
     conda:
         "../envs/vep.yaml"
     shell:
