@@ -1,0 +1,19 @@
+# a simple lookup for get a correct assembly identifier
+def assembly_version(version):
+    return {
+            "hg19": "GRCh37",
+            "hg38": "GRCh38"
+        }.get(version, version)
+
+
+rule run_vep:
+    input:
+        "variant_effect/hgvs/{barcode}/{allele}.txt"
+    output:
+        "variant_effect/vep/{barcode}/{allele}.txt"
+    params:
+        assembly = assembly_version(gene["reference"])
+    conda:
+        "../envs/vep.yaml"
+    shell:
+        "PERL5LIB=\"\" && vep --database --assembly {params.assembly} --format hgvs --refseq --force_overwrite --check_existing --everything -i {input} -o {output}"

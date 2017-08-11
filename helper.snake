@@ -1,0 +1,6 @@
+from pipe_helper import PipeHelper
+
+class VEPHelper(PipeHelper):
+    @property
+    def outputs(self):
+        return expand("variant_effect/combined/{barcodes}.txt", barcodes=self.barcode_ids)

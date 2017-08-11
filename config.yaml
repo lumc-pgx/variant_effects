@@ -1,0 +1,10 @@
+# Pipeline Configuration
+
+# Path to the folder containing the allele variants
+VARIANT_DATA_PATH: /home/wgallard/MyData/pharmacogenomics_pipeline/pugwash/test/variant_calling/variants
+
+# path to the gene definition file
+GENE: /home/wgallard/MyData/pharmacogenomics_pipeline/locus_definitions/PacBio/CYP2D6.yaml
+
+# Path to barcode fasta file
+BARCODES: /exports/lgtc/equipment/PacBio/jobs/000/000206/pacbio-barcodes/barcodes_pacbio_pad_index_1_9_v2/sequence/barcodes_pacbio_pad_index_1_9_v2.fasta

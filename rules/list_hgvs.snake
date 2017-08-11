@@ -1,0 +1,10 @@
+rule list_hgvs:
+    input:
+        "variant_effect/inputs/{barcode}.json"
+    output:
+        dynamic("variant_effect/hgvs/{barcode}/{allele}.txt")
+    params:
+        prefix = "variant_effect/hgvs/{barcode}",
+        chr_id = gene["chromosome"]["accession"]
+    script:
+        "../scripts/make_hgvs_list.py"
