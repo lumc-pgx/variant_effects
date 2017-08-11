@@ -1,6 +1,6 @@
 # Default parameters for jobs
 __default__:
   threads: 1
-  vmem: 1G
+  vmem: 2G
 
 
