@@ -8,3 +8,12 @@ GENE: /home/wgallard/MyData/pharmacogenomics_pipeline/locus_definitions/PacBio/C
 
 # Path to barcode fasta file
 BARCODES: /exports/lgtc/equipment/PacBio/jobs/000/000206/pacbio-barcodes/barcodes_pacbio_pad_index_1_9_v2/sequence/barcodes_pacbio_pad_index_1_9_v2.fasta
+
+STAGE_PARAMS:
+  VARIANT_EFFECT:
+    # The location of the folder containing cache files for use by vep
+    vep_cache_dir: /exports/genomes/species/H.sapiens/GRCh38/annotation/vep/88
+    # The version of the cache to be used
+    vep_cache_version: 88
+    # ignore variants at start/end of sequence?
+    ignoreBoundary: True

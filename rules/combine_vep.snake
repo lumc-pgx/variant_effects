@@ -1,7 +1,0 @@
-rule combine_vep:
-    input:
-        dynamic("variant_effect/filtered_vep/{barcode}/{allele}.txt")
-    output:
-        "variant_effect/combined/{barcode}.txt"
-    shell:
-        "cat {input} > {output}"

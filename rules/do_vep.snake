@@ -1,0 +1,20 @@
+# a simple lookup for get a correct assembly identifier
+def assembly_version(version):
+    return {
+            "hg19": "GRCh37",
+            "hg38": "GRCh38"
+        }.get(version, version)
+
+rule vep_process:
+    input:
+        "variant_effect/inputs/{barcode}.json"
+    output:
+        "variant_effect/vep/{barcode}.json"
+    conda:
+        "../envs/vep.yaml"
+    params:
+        assembly = assembly_version(PARAMS.locus.reference),
+        chr_id = PARAMS.locus.chromosome.accession,
+        transcript_id = PARAMS.locus.transcript
+    script:
+        "../scripts/do_vep.py"

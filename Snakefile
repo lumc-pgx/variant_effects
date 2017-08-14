@@ -7,7 +7,7 @@ onerror: PARAMS.onerror()
     
 # main workflow
 localrules:
-    all, link_source, combine
+    all, link_source
 
 rule all:
     input:
@@ -15,9 +15,4 @@ rule all:
 
 
 include: "rules/link_sources.snake"
-include: "rules/list_hgvs.snake"
-include: "rules/run_vep.snake"
-include: "rules/filter_vep.snake"
-include: "rules/combine_vep.snake"
-
-
+include: "rules/do_vep.snake"
