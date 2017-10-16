@@ -3,5 +3,4 @@ from pipe_helper import PipeHelper
 class VEPHelper(PipeHelper):
     @property
     def outputs(self):
-        #return expand("variant_effect/combined/{barcodes}.txt", barcodes=self.barcode_ids)
-        return expand("variant_effect/vep/{barcodes}.json", barcodes=self.barcode_ids)
+        return expand("variant_effect/vep/{gene}/{barcodes}.json", gene=list(self.genes), barcodes=self.barcode_ids)

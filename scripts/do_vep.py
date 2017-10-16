@@ -2,8 +2,17 @@ import json
 import os
 import subprocess
 import sys
+import locus_processing
 
-chr_id = snakemake.params.chr_id
+# a simple lookup for get a correct assembly identifier
+def assembly_version(version):
+    return {
+            "hg19": "GRCh37",
+            "hg38": "GRCh38"
+        }.get(version, version)
+
+locus = locus_processing.load_locus_yaml(snakemake.input.locus)
+chr_id = locus.chromosome.accession
 
 environment = os.environ.copy()
 environment["PERL5LIB"] = "" 
@@ -13,21 +22,21 @@ vep_command = [
     "--cache",
     "--dir_cache", snakemake.config["STAGE_PARAMS"]["VARIANT_EFFECT"]["vep_cache_dir"],
     "--cache_version", str(snakemake.config["STAGE_PARAMS"]["VARIANT_EFFECT"]["vep_cache_version"]),
-    "--assembly", snakemake.params.assembly,
+    "--assembly", assembly_version(locus.reference),
     "--format", "hgvs",
     "--refseq",
     "--force_overwrite",
     "--check_existing",
     "--everything",
     "--no_stats",
-    "--transcript_filter", "stable_id match {}".format(snakemake.params.transcript_id),
+    "--transcript_filter", "stable_id match {}".format(locus.transcript),
     "--json",
     "-o", "STDOUT"
 ]
 
 results = []
 
-with open(snakemake.input[0], 'r') as infile, open(snakemake.output[0], "w") as outfile:
+with open(snakemake.input.variants, 'r') as infile, open(snakemake.output[0], "w") as outfile:
     alleles = json.load(infile)
     for allele in alleles:
         
