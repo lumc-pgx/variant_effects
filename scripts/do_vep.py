@@ -45,7 +45,7 @@ with open(snakemake.input.variants, 'r') as infile, open(snakemake.output[0], "w
         else:
             variants = allele["variants"]
         
-        variant_string = "\n".join(["{}:g.{}".format(chr_id, v) for v in variants])
+        variant_string = "\n".join(["{}:g.{}".format(chr_id, v["g_notation"]) for v in variants])
         
         vep_process = subprocess.Popen(vep_command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, env=environment)
         (out, err) = vep_process.communicate(variant_string.encode("utf-8"))
