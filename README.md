@@ -6,6 +6,42 @@ The variant effects module performs the following operations:
 - Prediction of variant effects using ensembl VEP
 - Filtering and collation of effect predictions
 
+```plantuml
+digraph snakemake_dag {
+	graph [bb="0,0,76,180",
+		bgcolor=white,
+		margin=0
+	];
+	node [fontname=sans,
+		fontsize=10,
+		label="\N",
+		penwidth=2,
+		shape=box,
+		style=rounded
+	];
+	edge [color=grey,
+		penwidth=2
+	];
+	0	 [color="0.00 0.6 0.85",
+		height=0.5,
+		label=link_source,
+		pos="38,162",
+		width=0.97222];
+	2	 [color="0.44 0.6 0.85",
+		height=0.5,
+		label=vep_process,
+		pos="38,90",
+		width=1.0625];
+	0 -> 2	 [pos="e,38,108.1 38,143.7 38,135.98 38,126.71 38,118.11"];
+	1	 [color="0.22 0.6 0.85",
+		height=0.5,
+		label=all,
+		pos="38,18",
+		width=0.75];
+	2 -> 1	 [pos="e,38,36.104 38,71.697 38,63.983 38,54.712 38,46.112"];
+}
+```
+
 ## Requirements
 - [Conda/Miniconda](https://conda.io/miniconda.html)  
 
